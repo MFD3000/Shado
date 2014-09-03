@@ -1,0 +1,758 @@
+// Fixed navbar
+#head-nav.navbar.navbar-default.navbar-fixed-top
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+        span.fa.fa-gear
+      a.navbar-brand(href='#')
+        span Clean Zone
+    .navbar-collapse.collapse
+      ul.nav.navbar-nav
+        li.active
+          a(href='#') Home
+        li
+          a(href='#about') About
+        li.dropdown
+          a.dropdown-toggle(href='#', data-toggle='dropdown')
+            | Contact
+            b.caret
+          ul.dropdown-menu
+            li
+              a(href='#') Action
+            li
+              a(href='#') Another action
+            li
+              a(href='#') Something else here
+            li.dropdown-submenu
+              a(href='#') Sub menu
+              ul.dropdown-menu
+                li
+                  a(href='#') Action
+                li
+                  a(href='#') Another action
+                li
+                  a(href='#') Something else here
+        li.dropdown
+          a.dropdown-toggle(href='#', data-toggle='dropdown')
+            | Large menu
+            b.caret
+          ul.dropdown-menu.col-menu-2
+            li.col-sm-6.no-padding
+              ul
+                li.dropdown-header
+                  i.fa.fa-group
+                  | Users
+                li
+                  a(href='#') Action
+                li
+                  a(href='#') Another action
+                li
+                  a(href='#') Something else here
+                li.dropdown-header
+                  i.fa.fa-gear
+                  | Config
+                li
+                  a(href='#') Action
+                li
+                  a(href='#') Another action
+                li
+                  a(href='#') Something else here
+            li.col-sm-6.no-padding
+              ul
+                li.dropdown-header
+                  i.fa.fa-legal
+                  | Sales
+                li
+                  a(href='#') New sale
+                li
+                  a(href='#') Register a product
+                li
+                  a(href='#') Register a client
+                li
+                  a(href='#') Month sales
+                li
+                  a(href='#') Delivered orders
+      ul.nav.navbar-nav.navbar-right.user-nav
+        li.dropdown.profile_menu
+          a.dropdown-toggle(href='#', data-toggle='dropdown')
+            img(alt='Avatar', src='images/avatar2.jpg')
+            span Jeff Hanneman
+            b.caret
+          ul.dropdown-menu
+            li
+              a(href='#') My Account
+            li
+              a(href='#') Profile
+            li
+              a(href='#') Messages
+            li.divider
+            li
+              a(href='#') Sign Out
+      ul.nav.navbar-nav.navbar-right.not-nav
+        li.button.dropdown
+          a.dropdown-toggle(href='javascript:;', data-toggle='dropdown')
+            i.fa.fa-comments
+          ul.dropdown-menu.messages
+            li
+              .nano.nscroller
+                .content
+                  ul
+                    li
+                      a(href='#')
+                        img(src='images/avatar2.jpg', alt='avatar')
+                        span.date.pull-right 13 Sept.
+                        span.name Daniel
+                        | I'm following you, and I want your money!
+                    li
+                      a(href='#')
+                        img(src='images/avatar_50.jpg', alt='avatar')
+                        span.date.pull-right 20 Oct.
+                        span.name Adam
+                        | is now following you
+                    li
+                      a(href='#')
+                        img(src='images/avatar4_50.jpg', alt='avatar')
+                        span.date.pull-right 2 Nov.
+                        span.name Michael
+                        | is now following you
+                    li
+                      a(href='#')
+                        img(src='images/avatar3_50.jpg', alt='avatar')
+                        span.date.pull-right 2 Nov.
+                        span.name Lucy
+                        | is now following you
+              ul.foot
+                li
+                  a(href='#') View all messages 
+        li.button.dropdown
+          a.dropdown-toggle(href='javascript:;', data-toggle='dropdown')
+            i.fa.fa-globe
+            span.bubble 2
+          ul.dropdown-menu
+            li
+              .nano.nscroller
+                .content
+                  ul
+                    li
+                      a(href='#')
+                        i.fa.fa-cloud-upload.info
+                        b Daniel
+                        | is now following you
+                        span.date 2 minutes ago.
+                    li
+                      a(href='#')
+                        i.fa.fa-male.success
+                        b Michael
+                        | is now following you
+                        span.date 15 minutes ago.
+                    li
+                      a(href='#')
+                        i.fa.fa-bug.warning
+                        b Mia
+                        | commented on post
+                        span.date 30 minutes ago.
+                    li
+                      a(href='#')
+                        i.fa.fa-credit-card.danger
+                        b Andrew
+                        | killed someone
+                        span.date 1 hour ago.
+              ul.foot
+                li
+                  a(href='#') View all activity 
+        li.button
+          a.speech-button(href='javascript:;')
+            i.fa.fa-microphone
+    // /.nav-collapse animate-collapse
+#cl-wrapper.fixed-menu
+  .cl-sidebar(data-position='right', data-step='1', data-intro='<strong>Fixed Sidebar</strong> <br/> It adjust to your needs.')
+    .cl-toggle
+      i.fa.fa-bars
+    .cl-navblock
+      .menu-space
+        .content
+          .side-user
+            .avatar
+              img(src='images/avatar1_50.jpg', alt='Avatar')
+            .info
+              a(href='#') Jeff Hanneman
+              img(src='images/state_online.png', alt='Status')
+              span Online
+          ul.cl-vnavigation
+            li
+              a(href='#')
+                i.fa.fa-home
+                span Dashboard
+              ul.sub-menu
+                li.active
+                  a(href='index.html') Version 1
+                li
+                  a(href='dashboard2.html')
+                    span.label.label-primary.pull-right New
+                    | Version 2
+            li
+              a(href='#')
+                i.fa.fa-smile-o
+                span UI Elements
+              ul.sub-menu
+                li
+                  a(href='ui-elements.html') General
+                li
+                  a(href='ui-buttons.html') Buttons
+                li
+                  a(href='ui-modals.html')
+                    span.label.label-primary.pull-right New
+                    | Modals
+                li
+                  a(href='ui-notifications.html')
+                    span.label.label-primary.pull-right New
+                    | Notifications
+                li
+                  a(href='ui-icons.html') Icons
+                li
+                  a(href='ui-grid.html') Grid
+                li
+                  a(href='ui-tabs-accordions.html') Tabs & Acordions
+                li
+                  a(href='ui-nestable-lists.html') Nestable Lists
+                li
+                  a(href='ui-treeview.html') Tree View
+            li
+              a(href='#')
+                i.fa.fa-list-alt
+                span Forms
+              ul.sub-menu
+                li
+                  a(href='form-elements.html') Components
+                li
+                  a(href='form-validation.html') Validation
+                li
+                  a(href='form-wizard.html') Wizard
+                li
+                  a(href='form-masks.html') Input Masks
+                li
+                  a(href='form-multiselect.html')
+                    span.label.label-primary.pull-right New
+                    | Multi Select
+                li
+                  a(href='form-wysiwyg.html')
+                    span.label.label-primary.pull-right New
+                    | WYSIWYG Editor
+                li
+                  a(href='form-upload.html')
+                    span.label.label-primary.pull-right New
+                    | Multi Upload
+            li
+              a(href='#')
+                i.fa.fa-table
+                span Tables
+              ul.sub-menu
+                li
+                  a(href='tables-general.html') General
+                li
+                  a(href='tables-datatables.html')
+                    span.label.label-primary.pull-right New
+                    | Data Tables
+            li
+              a(href='#')
+                i.fa.fa-map-marker.nav-icon
+                span Maps
+              ul.sub-menu
+                li
+                  a(href='maps.html') Google Maps
+                li
+                  a(href='vector-maps.html')
+                    span.label.label-primary.pull-right New
+                    | Vector Maps
+            li
+              a(href='#')
+                i.fa.fa-envelope.nav-icon
+                span Email
+              ul.sub-menu
+                li
+                  a(href='email-inbox.html') Inbox
+                li
+                  a(href='email-read.html') Email Detail
+                li
+                  a(href='email-compose.html')
+                    span.label.label-primary.pull-right New
+                    | Email Compose
+            li
+              a(href='typography.html')
+                i.fa.fa-text-height
+                span Typography
+            li
+              a(href='charts.html')
+                i.fa.fa-bar-chart-o
+                span Charts
+            li
+              a(href='#')
+                i.fa.fa-file
+                span Pages
+              ul.sub-menu
+                li
+                  a(href='pages-blank.html') Blank Page
+                li
+                  a(href='pages-blank-header.html') Blank Page Header
+                li
+                  a(href='pages-blank-aside.html') Blank Page Aside
+                li
+                  a(href='pages-login.html') Login
+                li
+                  a(href='pages-404.html') 404 Page
+                li
+                  a(href='pages-500.html') 500 Page
+                li
+                  a(href='pages-sign-up.html')
+                    span.label.label-primary.pull-right New
+                    | Sign Up
+                li
+                  a(href='pages-forgot-password.html')
+                    span.label.label-primary.pull-right New
+                    | Forgot Password
+                li
+                  a(href='pages-profile.html')
+                    span.label.label-primary.pull-right New
+                    | Profile
+                li
+                  a(href='pages-search.html')
+                    span.label.label-primary.pull-right New
+                    | Search
+                li
+                  a(href='pages-calendar.html')
+                    span.label.label-primary.pull-right New
+                    | Calendar
+                li
+                  a(href='pages-code-editor.html')
+                    span.label.label-primary.pull-right New
+                    | Code Editor
+                li
+                  a(href='pages-gallery.html') Gallery
+                li
+                  a(href='pages-timeline.html') Timeline
+      .text-right.collapse-button(style='padding:7px 9px;')
+        input.form-control.search(type='text', placeholder='Search...')
+        button#sidebar-collapse.btn.btn-default(style='')
+          i.fa.fa-angle-left(style='color:#fff;')
+  #pcont.container-fluid
+    .cl-mcont
+      .stats_bar
+        .butpro.butstyle(data-step='2', data-intro='<strong>Beautiful Elements</strong> <br/> If you are looking for a different UI, this is for you!.')
+          .sub
+            h2 CLIENTS
+            span#total_clientes 170
+          .stat
+            span.spk1
+              canvas(style='display: inline-block; width: 74px; height: 16px; vertical-align: top;', width='74', height='16')
+        .butpro.butstyle
+          .sub
+            h2 Sales
+            span $951,611
+          .stat
+            span.up  13,5%
+        .butpro.butstyle
+          .sub
+            h2 VISITS
+            span 125
+          .stat
+            span.down  20,7%
+        .butpro.butstyle
+          .sub
+            h2 NEW USERS
+            span 18
+          .stat
+            span.equal  0%
+        .butpro.butstyle
+          .sub
+            h2 AVERAGE
+            span 3%
+          .stat
+            span.spk2
+        .butpro.butstyle
+          .sub
+            h2 Downloads
+            span 184
+          .stat
+            span.spk3
+      .row.dash-cols
+        .col-sm-6.col-md-6
+          .block
+            .header.no-border
+              h2 Sales
+            .content.blue-chart(data-step='3', data-intro='<strong>Unique Styled Plugins</strong> <br/> We put love in every detail to give a great user experience!.')
+              #site_statistics(style='height:180px;')
+            .content
+              .stat-data
+                .stat-blue
+                  h2 1,254
+                  span Total Sales
+              .stat-data
+                .stat-number
+                  div
+                    h2 83
+                  div
+                    | Total hits
+                    br
+                    span (Daily)
+                .stat-number
+                  div
+                    h2 57
+                  div
+                    | Views
+                    br
+                    span (Daily)
+              .clear
+        .col-sm-6.col-md-6
+          .block
+            .header.no-border
+              h2 Monitor
+            .content.red-chart
+              #site_statistics2(style='height:152px;')
+            .content.no-padding
+              table.red
+                thead
+                  tr
+                    th Name
+                    th.right
+                      span 25%
+                      | C.P.U
+                    th.right
+                      span 29%
+                      | Memory
+                    th.right
+                      span 16%
+                      | Disc
+                tbody.no-border-x
+                  tr
+                    td(style='width:40%;')
+                      i.fa.fa-sitemap
+                      | Server load
+                    td.text-right 0,2%
+                    td.text-right 13,2 MB
+                    td.text-right 0,1 MB/s
+                  tr
+                    td
+                      i.fa.fa-tasks
+                      | Apps
+                    td.text-right 0,2%
+                    td.text-right 13,2 MB
+                    td.text-right 0,1 MB/s
+                  tr
+                    td
+                      i.fa.fa-signal
+                      | Process
+                    td.text-right 0,2%
+                    td.text-right 13,2 MB
+                    td.text-right 0,1 MB/s
+                  tr
+                    td
+                      i.fa.fa-bolt
+                      | Wamp Server
+                    td.text-right 0,2%
+                    td.text-right 13,2 MB
+                    td.text-right 0,1 MB/s
+      .row.dash-cols
+        .col-sm-6.col-md-6
+          .block
+            .header
+              h2
+                | Invoice
+                span.pull-right #45
+              h3 Your order has been delivered
+            .content.no-padding
+              ul.items
+                li
+                  i.fa.fa-file-text
+                  | Filet Mignon
+                  span.pull-right.value $35
+                  small Italian food
+                li
+                  i.fa.fa-file-text
+                  | Blue beer
+                  span.pull-right.value $35
+                  small Bar drinks
+                li
+                  i.fa.fa-file-text
+                  | T-shirts
+                  span.pull-right.value $35
+                  small Software development
+                li
+                  i.fa.fa-file-text
+                  | Cloud App
+                  span.pull-right.value $35
+                  small Game department
+                li
+                  i.fa.fa-file-text
+                  | Black Metal Music
+                  span.pull-right.value $35
+                  small Metal genre
+            .total-data.bg-blue
+              a.dropdown-toggle(href='#', data-toggle='dropdown')
+                h2
+                  | Total
+                  b.caret
+                  span.pull-right $25.3
+              ul.dropdown-menu
+                li
+                  a(href='#') Print receipt
+                li
+                  a(href='#') Send invoice to...
+                li
+                  a(href='#') Payment
+        .col-sm-6.col-md-6
+          ul.nav.nav-tabs
+            li.active
+              a(href='#home', data-toggle='tab') Home
+            li
+              a(href='#profile', data-toggle='tab') Profile
+            li
+              a(href='#messages', data-toggle='tab') Messages
+          .tab-content
+            #home.tab-pane.active.cont
+              h2.text-center Our Experience
+              #piec(style='height:300px;margin-top:25px;')
+            #profile.tab-pane.cont
+              h2 Typography
+              p
+                | Pellentesque ac quam hendrerit, viverra leo eu,
+                b dapibus mi
+                | . In at luctus massa. Morbi semper nulla eu velit facilisis pellentesque. Mauris adipiscing turpis in bibendum tempus.
+                i Donec viverra
+                | , lacus ac mollis rhoncus, libero risus placerat nisi, et viverra justo eros eget dui. Mauris convallis et tellus non
+                a(href='#') placerat
+                | .
+              p
+                | Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce gravida est eros, eget porta leo fringilla et.
+              a(href='#') Read more
+            #messages.tab-pane
+              h2.hthin A Lorem Ipsum Story
+              p
+                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a metus pulvinar turpis porttitor imperdiet vel nec justo. Nam id orci purus. Mauris arcu velit, auctor et aliquam quis, rhoncus a velit. Sed laoreet ultrices dolor eget vehicula. Morbi adipiscing euismod nisi, eget tincidunt arcu laoreet at.
+              p
+                | Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam et tortor ultricies, mollis nunc eget, gravida sapien.
+      .row.dash-cols
+        .col-sm-6.col-md-6
+          .widget-block.white-box.calendar-box
+            .col-md-6.blue-box.calendar.no-padding
+              .padding.ui-datepicker
+            .col-md-6
+              .padding
+                h2.text-center Monday
+                h1.day 2
+          .widget-block.photo.white-box.weather-box
+            .col-md-6.padding.photo
+              h2.text-center Monday
+              h1.day 10/12/2013
+            .col-md-6.red-box
+              .padding.text-center
+                canvas#sun-icon(width='130', height='215')
+        .col-sm-6.col-md-6
+          ul.nav.nav-tabs
+            li.active
+              a(href='#chat-1', data-toggle='tab') Adam
+            li
+              a(href='#chat-2', data-toggle='tab') Mike
+            li
+              a(href='#chat-3', data-toggle='tab') Lucy
+          .tab-content.no-padding
+            #chat-1.tab-pane.active.cont
+              .chat-wi
+                .chat-space.nano.nscroller
+                  .chat-content.content
+                    .chat-conv
+                      img.c-avatar.ttip(alt='Avatar', src='images/avatar1_50.jpg', data-toggle='tooltip', title='MiguelMich')
+                      .c-bubble
+                        .msg Hello, what can i do for you?
+                        div
+                          small 12:20 p.m.
+                        span
+                    .chat-conv.sent
+                      img.c-avatar.ttip(alt='Avatar', src='images/avatar_50.jpg', data-toggle='tooltip', title='Adam')
+                      .c-bubble
+                        .msg Hi, i need support with my iPhone?
+                        div
+                          small 12:25 p.m.
+                        span
+                    .chat-conv
+                      img.c-avatar.ttip(alt='Avatar', src='images/avatar1_50.jpg', data-toggle='tooltip', title='MiguelMich')
+                      .c-bubble
+                        .msg Hello, how are you? i just though you were here, i'll see you tomorrow.
+                        div
+                          small 12:30 p.m.
+                        span
+                    .chat-conv.sent
+                      img.c-avatar.ttip(alt='Avatar', src='images/avatar_50.jpg', data-toggle='tooltip', title='Adam')
+                      .c-bubble
+                        .msg Hi, i need support with my iPhone?
+                        div
+                          small 12:25 p.m.
+                        span
+                .chat-in
+                  form(action='dfgdfg', method='post', name='sd')
+                    input.btn.btn-info.pull-right(type='submit', value='SEND')
+                    .input
+                      input(type='text', placeholder='Send a message...', name='msg')
+                    .chat-tools
+                      ul.nav.nav-pills
+                        li.active
+                          i.fa.fa-location-arrow
+                        li
+                          i.fa.fa-camera
+                        li
+                          i.fa.fa-microphone
+                        li
+                          i.fa.fa-cloud
+            #chat-2.tab-pane.cont
+              .chat-wi
+                .chat-space.nano.nscroller
+                  .chat-content.content
+                    .chat-conv.sent
+                      img.c-avatar.ttip(alt='Avatar', src='images/avatar4_50.jpg', data-toggle='tooltip', title='Adam')
+                      .c-bubble
+                        .msg Hey, are you there?
+                        div
+                          small 12:25 p.m.
+                        span
+                    .chat-conv
+                      img.c-avatar.ttip(alt='Avatar', src='images/avatar1_50.jpg', data-toggle='tooltip', title='MiguelMich')
+                      .c-bubble
+                        .msg I'm here, how was your day?
+                        div
+                          small 12:20 p.m.
+                        span
+                    .chat-conv.sent
+                      img.c-avatar.ttip(alt='Avatar', src='images/avatar4_50.jpg', data-toggle='tooltip', title='Adam')
+                      .c-bubble
+                        .msg It was fine, just making some designs...
+                        div
+                          small 12:25 p.m.
+                        span
+                .chat-in
+                  form(action='dfgdfg', method='post', name='sd')
+                    input.btn.btn-info.pull-right(type='submit', value='SEND')
+                    .input
+                      input(type='text', placeholder='Send a message...', name='msg')
+                    .chat-tools
+                      ul.nav.nav-pills
+                        li.active
+                          i.fa.fa-location-arrow
+                        li
+                          i.fa.fa-camera
+                        li
+                          i.fa.fa-microphone
+                        li
+                          i.fa.fa-cloud
+            #chat-3.tab-pane
+              .chat-wi
+                .chat-space.nano.nscroller
+                  .chat-content.content
+                    .chat-conv
+                      img.c-avatar.ttip(alt='Avatar', src='images/avatar1_50.jpg', data-toggle='tooltip', title='MiguelMich')
+                      .c-bubble
+                        .msg Hello, what can i do for you?
+                        div
+                          small 12:20 p.m.
+                        span
+                    .chat-conv.sent
+                      img.c-avatar.ttip(alt='Avatar', src='images/avatar3_50.jpg', data-toggle='tooltip', title='Lucy')
+                      .c-bubble
+                        .msg Hi, i need support with my iPhone?
+                        div
+                          small 12:25 p.m.
+                        span
+                    .chat-conv
+                      img.c-avatar.ttip(alt='Avatar', src='images/avatar1_50.jpg', data-toggle='tooltip', title='MiguelMich')
+                      .c-bubble
+                        .msg Hello, how are you? i just though you were here, i'll see you tomorrow.
+                        div
+                          small 12:30 p.m.
+                        span
+                    .chat-conv.sent
+                      img.c-avatar.ttip(alt='Avatar', src='images/avatar3_50.jpg', data-toggle='tooltip', title='Lucy')
+                      .c-bubble
+                        .msg Hi, i need support with my iPhone?
+                        div
+                          small 12:25 p.m.
+                        span
+                .chat-in
+                  form(action='dfgdfg', method='post', name='sd')
+                    input.btn.btn-info.pull-right(type='submit', value='SEND')
+                    .input
+                      input(type='text', placeholder='Send a message...', name='msg')
+                    .chat-tools
+                      ul.nav.nav-pills
+                        li.active
+                          i.fa.fa-location-arrow
+                        li
+                          i.fa.fa-camera
+                        li
+                          i.fa.fa-microphone
+                        li
+                          i.fa.fa-cloud
+      .row.dash-cols
+        .col-sm-6.col-md-6.col-lg-4
+          .widget-block
+            .white-box.padding
+              .row.info
+                div
+                  h3 Your Goals
+                div
+                  #com_stats(style='height:98px;')
+        .col-sm-6.col-md-6.col-lg-4
+          .widget-block
+            .white-box.padding
+              .row.info.text-shadow
+                .col-xs-12
+                  h3 Comments
+                .col-xs-12
+                  #com2_stats(style='height:98px;')
+        .col-sm-6.col-md-6.col-lg-4
+          .widget-block
+            .white-box
+              .fact-data
+                .epie-chart(data-percent='45')
+                  span 0%
+              .fact-data.no-padding.text-shadow
+                h3 Users sales
+                h2 4,522
+                p Monthly sales from users.
+      .row.dash-cols
+        .col-sm-6.col-md-6.col-lg-4
+          .block
+            .header
+              h2
+                i.fa.fa-comment
+                | Comments
+            .content.no-padding
+              .fact-data.text-center
+                h3 Positive
+                h2 60%
+              .fact-data.text-center
+                h3 Negative
+                h2 40%
+        .col-sm-6.col-md-6.col-lg-4
+          .block
+            .header
+              h2
+                i.fa.fa-bug
+                | Tickets
+            .content.no-padding
+              .fact-data.text-center
+                h3 Frequency
+                h2 53%
+              .fact-data.text-center
+                h3 Pending
+                h2 13
+        .col-sm-6.col-md-6.col-lg-4
+          .block
+            .header
+              h2
+                i.fa.fa-comment
+                | Comments
+            .content.no-padding
+              .fact-data.text-center
+                h3 Positive
+                h2 60%
+              .fact-data.text-center
+                h3 Negative
+                h2 40%
