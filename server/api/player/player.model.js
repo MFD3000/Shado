@@ -5,8 +5,13 @@ var mongoose = require('mongoose'),
 
 var PlayerSchema = new Schema({
   name: String,
-  info: String,
-  active: Boolean
+  contract: {
+    salary: Number,
+    expires: Date,
+  },
+  sport: String, 
+  statsFeed: String,
+  realWorldTeam: String
 });
 
 module.exports = mongoose.model('Player', PlayerSchema);

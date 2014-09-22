@@ -22,7 +22,7 @@ exports.show = function(req, res) {
 
 // Creates a new league in the DB.
 exports.create = function(req, res) {
-  League.create(req.body, function(err, league) {
+  League.create(req.body,function(err, league) {
     if(err) { return handleError(res, err); }
     return res.json(201, league);
   });

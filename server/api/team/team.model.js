@@ -5,8 +5,9 @@ var mongoose = require('mongoose'),
 
 var TeamSchema = new Schema({
   name: String,
-  info: String,
-  active: Boolean
+  franchise: {type: Schema.ObjectId, ref: 'Franchise'},
+  longlat: String,
+  sport: String
 });
 
 module.exports = mongoose.model('Team', TeamSchema);

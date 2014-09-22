@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 var PlayerAssignmentSchema = new Schema({
   team: {type: Schema.ObjectId, ref: 'Team'},
   player: {type: Schema.ObjectId, ref: 'Player'},
-  status: String,
+  status: String
 });
 
 module.exports = mongoose.model('PlayerAssignment', PlayerAssignmentSchema);

@@ -9,10 +9,12 @@ var errors = require('./components/errors');
 module.exports = function(app) {
 
   // Insert routes below
+  app.use('/api/player_assignments', require('./api/player_assignment'));
+  app.use('/api/stakes', require('./api/stake'));
   app.use('/api/franchises', require('./api/franchise'));
   app.use('/api/leagues', require('./api/league'));
-  app.use('/y', require('./api/team'));
-  app.use('/y', require('./api/player'));
+  app.use('/api/teams', require('./api/team'));
+  app.use('/api/players', require('./api/player'));
   app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));
 
