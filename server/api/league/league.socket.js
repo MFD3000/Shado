@@ -4,21 +4,24 @@
 
 'use strict';
 
-var League = require('./league.model');
+var League = require('../models').League;
 
 exports.register = function(socket) {
-  League.schema.post('save', function (doc) {
-    onSave(socket, doc);
+  League.afterCreate(function (league) {
+      onSave(socket, league);
   });
-  League.schema.post('remove', function (doc) {
-    onRemove(socket, doc);
+  League.afterUpdate(function (league) {
+      onSave(socket, league);
+  });
+  League.afterDestroy(function (league) {
+    onRemove(socket, league);
   });
 }
 
-function onSave(socket, doc, cb) {
-  socket.emit('league:save', doc);
+function onSave(socket, league, cb) {
+  socket.emit('league:save', league);
 }
 
-function onRemove(socket, doc, cb) {
-  socket.emit('league:remove', doc);
+function onRemove(socket, league, cb) {
+  socket.emit('league:remove', league);
 }

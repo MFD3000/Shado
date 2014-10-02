@@ -1,59 +1,65 @@
 'use strict';
 
 var _ = require('lodash');
-var League = require('./league.model');
+var League = require('../models').League;
 
 // Get list of leagues
 exports.index = function(req, res) {
-  League.find(function (err, leagues) {
-    if(err) { return handleError(res, err); }
-    return res.json(200, leagues);
+  League.findAll().success(function (leagues) {
+      return res.json(200, leagues);
+  }).error(function(error){
+      return handleError(res, error);
   });
 };
 
 // Get a single league
 exports.show = function(req, res) {
-  League.findById(req.params.id, function (err, league) {
-    if(err) { return handleError(res, err); }
-    if(!league) { return res.send(404); }
-    return res.json(league);
-  });
+    League.find(req.params.id).success(function (league) {
+        if(!league) { return res.send(404); }
+        return res.json(league);
+    }).error(function(error){
+        return handleError(res, error);
+    });
 };
 
 // Creates a new league in the DB.
 exports.create = function(req, res) {
-  League.create(req.body,function(err, league) {
-    if(err) { return handleError(res, err); }
-    return res.json(201, league);
+  League.create(req.body).success(function(league){
+      return res.json(201, league);
+  }).error(function(error) {
+      return handleError(res, error);
   });
 };
 
 // Updates an existing league in the DB.
 exports.update = function(req, res) {
-  if(req.body._id) { delete req.body._id; }
-  League.findById(req.params.id, function (err, league) {
-    if (err) { return handleError(res, err); }
-    if(!league) { return res.send(404); }
-    var updated = _.merge(league, req.body);
-    updated.save(function (err) {
-      if (err) { return handleError(res, err); }
-      return res.json(200, league);
-    });
+  if(req.body.id) { delete req.body.id; }
+  League.find(req.params.id).success(function (league) {
+      if(!league) { return res.send(404); }
+      league.updateAttributes(req.body).success(function(league) {
+          return res.json(league);
+      }).error(function(error) {
+          return handleError(res, error);
+      });
+  }).error(function(error){
+      return handleError(res, error);
   });
 };
 
 // Deletes a league from the DB.
 exports.destroy = function(req, res) {
-  League.findById(req.params.id, function (err, league) {
-    if(err) { return handleError(res, err); }
-    if(!league) { return res.send(404); }
-    league.remove(function(err) {
-      if(err) { return handleError(res, err); }
-      return res.send(204);
-    });
+  League.find(req.params.id).success(function (league) {
+      if(!league) { return res.send(404); }
+      league.destroy().success(function(league) {
+          return res.send(204);
+      }).error(function(error) {
+          return handleError(res, error);
+      });
+  }).error(function(error){
+      return handleError(res, error);
   });
 };
 
-function handleError(res, err) {
-  return res.send(500, err);
+function handleError(res, error) {
+  return res.send(500, error);
 }

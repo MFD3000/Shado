@@ -9,9 +9,11 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var express = require('express');
 var mongoose = require('mongoose');
+var Sequelize = require('sequelize');
 var config = require('./config/environment');
 
 // Connect to database
+var db = require('./api/models');
 mongoose.connect(config.mongo.uri, config.mongo.options);
 
 // Populate DB with sample data
@@ -25,10 +27,16 @@ require('./config/socketio')(socketio);
 require('./config/express')(app);
 require('./routes')(app);
 
-// Start server
-server.listen(config.port, config.ip, function () {
-  console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
-});
+db.sequelize.sync().complete(function(err) {
+    if (err) {
+        throw err[0]
+    } else {
+        // Start server
+        server.listen(config.port, config.ip, function () {
+            console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
+        });
+    }
+})
 
 // Expose app
 exports = module.exports = app;
