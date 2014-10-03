@@ -5,28 +5,28 @@ var League = require('../models').League;
 
 // Get list of leagues
 exports.index = function(req, res) {
-  League.findAll().success(function (leagues) {
+  League.findAll().then(function (leagues) {
       return res.json(200, leagues);
-  }).error(function(error){
+  }, function(error){
       return handleError(res, error);
   });
 };
 
 // Get a single league
 exports.show = function(req, res) {
-    League.find(req.params.id).success(function (league) {
+    League.find(req.params.id).then(function (league) {
         if(!league) { return res.send(404); }
         return res.json(league);
-    }).error(function(error){
+    }, function(error){
         return handleError(res, error);
     });
 };
 
 // Creates a new league in the DB.
 exports.create = function(req, res) {
-  League.create(req.body).success(function(league){
+  League.create(req.body).then(function(league){
       return res.json(201, league);
-  }).error(function(error) {
+  },function(error) {
       return handleError(res, error);
   });
 };
@@ -34,28 +34,28 @@ exports.create = function(req, res) {
 // Updates an existing league in the DB.
 exports.update = function(req, res) {
   if(req.body.id) { delete req.body.id; }
-  League.find(req.params.id).success(function (league) {
+  League.find(req.params.id).then(function (league) {
       if(!league) { return res.send(404); }
-      league.updateAttributes(req.body).success(function(league) {
+      league.updateAttributes(req.body).then(function(league) {
           return res.json(league);
-      }).error(function(error) {
+      }, function(error) {
           return handleError(res, error);
       });
-  }).error(function(error){
+  }, function(error){
       return handleError(res, error);
   });
 };
 
 // Deletes a league from the DB.
 exports.destroy = function(req, res) {
-  League.find(req.params.id).success(function (league) {
+  League.find(req.params.id).then(function (league) {
       if(!league) { return res.send(404); }
-      league.destroy().success(function(league) {
+      league.destroy().then(function(league) {
           return res.send(204);
-      }).error(function(error) {
+      }, function(error) {
           return handleError(res, error);
       });
-  }).error(function(error){
+  }, function(error){
       return handleError(res, error);
   });
 };

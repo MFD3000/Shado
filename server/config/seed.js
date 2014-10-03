@@ -6,7 +6,7 @@
 'use strict';
 
 var Thing = require('../api/thing/thing.model');
-var User = require('../api/user/user.model');
+var User = require('../api/models').User;
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -30,8 +30,8 @@ Thing.find({}).remove(function() {
   });
 });
 
-User.find({}).remove(function() {
-  User.create({
+User.destroy({},{truncate: true}).then(function(){
+  User.bulkCreate([{
     provider: 'local',
     name: 'Test User',
     email: 'test@test.com',
@@ -42,8 +42,7 @@ User.find({}).remove(function() {
     name: 'Admin',
     email: 'admin@admin.com',
     password: 'admin'
-  }, function() {
+  }]).then(function() {
       console.log('finished populating users');
-    }
-  );
+  });
 });
