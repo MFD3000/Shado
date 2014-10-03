@@ -4,21 +4,24 @@
 
 'use strict';
 
-var Stake = require('./stake.model');
+var Stake = require('../models').Stake;
 
 exports.register = function(socket) {
-  Stake.schema.post('save', function (doc) {
-    onSave(socket, doc);
-  });
-  Stake.schema.post('remove', function (doc) {
-    onRemove(socket, doc);
-  });
+    Stake.afterCreate(function (stake) {
+        onSave(socket, stake);
+    });
+    Stake.afterUpdate(function (stake) {
+        onSave(socket, stake);
+    });
+    Stake.afterDestroy(function (stake) {
+        onRemove(socket, stake);
+    });
 }
 
-function onSave(socket, doc, cb) {
-  socket.emit('stake:save', doc);
+function onSave(socket, stake, cb) {
+    socket.emit('stake:save', stake);
 }
 
-function onRemove(socket, doc, cb) {
-  socket.emit('stake:remove', doc);
+function onRemove(socket, stake, cb) {
+    socket.emit('stake:remove', stake);
 }

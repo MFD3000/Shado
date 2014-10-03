@@ -4,21 +4,24 @@
 
 'use strict';
 
-var PlayerAssignment = require('./player_assignment.model');
+var PlayerAssignment = require('../models').PlayerAssignment;
 
 exports.register = function(socket) {
-  PlayerAssignment.schema.post('save', function (doc) {
-    onSave(socket, doc);
-  });
-  PlayerAssignment.schema.post('remove', function (doc) {
-    onRemove(socket, doc);
-  });
+    PlayerAssignment.afterCreate(function (player_assignment) {
+        onSave(socket, player_assignment);
+    });
+    PlayerAssignment.afterUpdate(function (player_assignment) {
+        onSave(socket, player_assignment);
+    });
+    PlayerAssignment.afterDestroy(function (player_assignment) {
+        onRemove(socket, player_assignment);
+    });
 }
 
-function onSave(socket, doc, cb) {
-  socket.emit('player_assignment:save', doc);
+function onSave(socket, player_assignment, cb) {
+    socket.emit('player_assignment:save', player_assignment);
 }
 
-function onRemove(socket, doc, cb) {
-  socket.emit('player_assignment:remove', doc);
+function onRemove(socket, player_assignment, cb) {
+    socket.emit('player_assignment:remove', player_assignment);
 }

@@ -4,21 +4,24 @@
 
 'use strict';
 
-var Team = require('./team.model');
+var Team = require('../models').Team;
 
 exports.register = function(socket) {
-  Team.schema.post('save', function (doc) {
-    onSave(socket, doc);
-  });
-  Team.schema.post('remove', function (doc) {
-    onRemove(socket, doc);
-  });
+    Team.afterCreate(function (team) {
+        onSave(socket, team);
+    });
+    Team.afterUpdate(function (team) {
+        onSave(socket, team);
+    });
+    Team.afterDestroy(function (team) {
+        onRemove(socket, team);
+    });
 }
 
-function onSave(socket, doc, cb) {
-  socket.emit('team:save', doc);
+function onSave(socket, team, cb) {
+    socket.emit('team:save', team);
 }
 
-function onRemove(socket, doc, cb) {
-  socket.emit('team:remove', doc);
+function onRemove(socket, team, cb) {
+    socket.emit('team:remove', team);
 }

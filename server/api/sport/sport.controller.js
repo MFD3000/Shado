@@ -1,43 +1,43 @@
 'use strict';
 
 var _ = require('lodash');
-var Team = require('../models').Team;
+var Sport = require('../models').Sport;
 
-// Get list of teams
+// Get list of sports
 exports.index = function(req, res) {
-    Team.findAll().then(function (teams) {
-        return res.json(200, teams);
+    Sport.findAll().then(function (sports) {
+        return res.json(200, sports);
     }, function(error){
         return handleError(res, error);
     });
 };
 
-// Get a single team
+// Get a single sport
 exports.show = function(req, res) {
-    Team.find(req.params.id).then(function (team) {
-        if(!team) { return res.send(404); }
-        return res.json(team);
+    Sport.find(req.params.id).then(function (sport) {
+        if(!sport) { return res.send(404); }
+        return res.json(sport);
     }, function(error){
         return handleError(res, error);
     });
 };
 
-// Creates a new team in the DB.
+// Creates a new sport in the DB.
 exports.create = function(req, res) {
-    Team.create(req.body).then(function(team){
-        return res.json(201, team);
+    Sport.create(req.body).then(function(sport){
+        return res.json(201, sport);
     },function(error) {
         return handleError(res, error);
     });
 };
 
-// Updates an existing team in the DB.
+// Updates an existing sport in the DB.
 exports.update = function(req, res) {
     if(req.body.id) { delete req.body.id; }
-    Team.find(req.params.id).then(function (team) {
-        if(!team) { return res.send(404); }
-        team.updateAttributes(req.body).then(function(team) {
-            return res.json(team);
+    Sport.find(req.params.id).then(function (sport) {
+        if(!sport) { return res.send(404); }
+        sport.updateAttributes(req.body).then(function(sport) {
+            return res.json(sport);
         }, function(error) {
             return handleError(res, error);
         });
@@ -46,11 +46,11 @@ exports.update = function(req, res) {
     });
 };
 
-// Deletes a team from the DB.
+// Deletes a sport from the DB.
 exports.destroy = function(req, res) {
-    Team.find(req.params.id).then(function (team) {
-        if(!team) { return res.send(404); }
-        team.destroy().then(function(team) {
+    Sport.find(req.params.id).then(function (sport) {
+        if(!sport) { return res.send(404); }
+        sport.destroy().then(function(sport) {
             return res.send(204);
         }, function(error) {
             return handleError(res, error);

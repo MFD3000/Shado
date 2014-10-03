@@ -110,7 +110,6 @@ exports.changePassword = function(req, res, next) {
  * Get my info
  */
 exports.me = function(req, res, next) {
-    console.log("SNIRDEBUG "+ JSON.stringify(req.user));
     User.find(req.user.id).then(function(user){
      if (!user) return res.json(401);
      user = omitPasswordAndSalt(user) ;

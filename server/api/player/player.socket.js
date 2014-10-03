@@ -4,21 +4,24 @@
 
 'use strict';
 
-var Player = require('./player.model');
+var Player = require('../models').Player;
 
 exports.register = function(socket) {
-  Player.schema.post('save', function (doc) {
-    onSave(socket, doc);
-  });
-  Player.schema.post('remove', function (doc) {
-    onRemove(socket, doc);
-  });
+    Player.afterCreate(function (player) {
+        onSave(socket, player);
+    });
+    Player.afterUpdate(function (player) {
+        onSave(socket, player);
+    });
+    Player.afterDestroy(function (player) {
+        onRemove(socket, player);
+    });
 }
 
-function onSave(socket, doc, cb) {
-  socket.emit('player:save', doc);
+function onSave(socket, player, cb) {
+    socket.emit('player:save', player);
 }
 
-function onRemove(socket, doc, cb) {
-  socket.emit('player:remove', doc);
+function onRemove(socket, player, cb) {
+    socket.emit('player:remove', player);
 }

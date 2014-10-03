@@ -21,7 +21,6 @@ function onConnect(socket) {
   require('../api/player_assignment/player_assignment.socket').register(socket);
   require('../api/stake/stake.socket').register(socket);
   require('../api/league/league.socket').register(socket);
-  require('../api/franchise/franchise.socket').register(socket);
   require('../api/team/team.socket').register(socket);
   require('../api/player/player.socket').register(socket);
   require('../api/thing/thing.socket').register(socket);
