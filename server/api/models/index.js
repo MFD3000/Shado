@@ -42,8 +42,8 @@ if (!global.hasOwnProperty('db')) {
     global.db.PlayerAssignment.belongsTo(global.db.Player);
     global.db.PlayerAssignment.belongsTo(global.db.Team);
 
-    global.db.Stake.belongsTo(global.db.Team);
-    global.db.Stake.belongsTo(global.db.User);
+    global.db.User.hasMany(global.db.Team, {through: global.db.Stake});
+    global.db.Team.hasMany(global.db.User, {through: global.db.Stake});
 }
 
 module.exports = global.db

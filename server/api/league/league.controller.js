@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var League = require('../models').League;
+var User = require('../models').User;
 
 // Get list of leagues
 exports.index = function(req, res) {
@@ -59,6 +60,18 @@ exports.destroy = function(req, res) {
       return handleError(res, error);
   });
 };
+
+// Get the teams owned by the current user in a single league
+exports.teams = function(req, res) {
+    var user = req.user;
+    user.getTeams({where: {LeagueId: req.params.id}}).then(function (teams) {
+        if(!teams) { return res.send(404); }
+        return res.json(teams);
+    }, function(error){
+        return handleError(res, error);
+    });
+};
+
 
 function handleError(res, error) {
   return res.send(500, error);
