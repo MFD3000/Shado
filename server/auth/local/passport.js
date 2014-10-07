@@ -7,11 +7,7 @@ exports.setup = function (User, config) {
       passwordField: 'password' // this is the virtual field on the model
     },
     function(email, password, done) {
-      User.findOne({
-        email: email.toLowerCase()
-      }, function(err, user) {
-        if (err) return done(err);
-
+      User.find({where: {email: email.toLowerCase()}}).then(function(user) {
         if (!user) {
           return done(null, false, { message: 'This email is not registered.' });
         }
@@ -19,6 +15,8 @@ exports.setup = function (User, config) {
           return done(null, false, { message: 'This password is not correct.' });
         }
         return done(null, user);
+      },function(error){
+          if (err) return done(err);
       });
     }
   ));

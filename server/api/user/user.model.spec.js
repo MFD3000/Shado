@@ -2,9 +2,9 @@
 
 var should = require('should');
 var app = require('../../app');
-var User = require('./user.model');
+var User = require('../models').User;
 
-var user = new User({
+var user = User.create({
   provider: 'local',
   name: 'Fake User',
   email: 'test@test.com',
@@ -14,19 +14,19 @@ var user = new User({
 describe('User Model', function() {
   before(function(done) {
     // Clear users before testing
-    User.remove().exec().then(function() {
+    User.destroy({},{truncate: true}).then(function() {
       done();
     });
   });
 
   afterEach(function(done) {
-    User.remove().exec().then(function() {
+    User.destroy({},{truncate: true}).then(function() {
       done();
     });
   });
 
   it('should begin with no users', function(done) {
-    User.find({}, function(err, users) {
+    User.find().then(function(users) {
       users.should.have.length(0);
       done();
     });
@@ -34,20 +34,28 @@ describe('User Model', function() {
 
   it('should fail when saving a duplicate user', function(done) {
     user.save(function() {
-      var userDup = new User(user);
-      userDup.save(function(err) {
-        should.exist(err);
-        done();
-      });
+      var userDup = User.build(user);
+      userDup.save().then(function() {
+              // Fail if you reach this
+              should(false).ok
+          },function(err) {
+              should.exist(err);
+              done();
+          }
+      );
     });
   });
 
   it('should fail when saving without an email', function(done) {
     user.email = '';
-    user.save(function(err) {
-      should.exist(err);
-      done();
-    });
+    user.save().then(function() {
+            // Fail if you reach this
+            should(false).ok
+        },function(err) {
+            should.exist(err);
+            done();
+        }
+    );
   });
 
   it("should authenticate user if password is valid", function() {

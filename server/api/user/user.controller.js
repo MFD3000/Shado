@@ -4,18 +4,21 @@ var User = require('../models').User;
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+var _ = require('underscore');
 
 var validationError = function(res, err) {
   return res.json(422, err);
 };
 
 var omitPasswordAndSalt = function(user) {
-    return _.omit(element.toJSON(), 'salt').omit(element.toJSON(), 'hashedPassword');
+    user = _.omit(user, 'salt');
+    user = _.omit(user, 'hashedPassword')
+    return user;
 }
 
 var bulkOmitPasswordAndSalt = function(users) {
-  return _.map(users, function(element,index,list) {
-      return omitPasswordAndSalt(element);
+  return _.map(users, function(user,index,list) {
+      return omitPasswordAndSalt(user);
   });
 }
 
@@ -49,7 +52,7 @@ exports.create = function (req, res, next) {
   newUser.role = 'user';
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
-    var token = jwt.sign({_id: user.id }, config.secrets.session, { expiresInMinutes: 60*5 });
+    var token = jwt.sign({id: user.id }, config.secrets.session, { expiresInMinutes: 60*5 });
     res.json({ token: token });
   });
 };
