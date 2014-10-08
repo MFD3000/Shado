@@ -26,7 +26,11 @@ if (!global.hasOwnProperty('db')) {
         Player: sequelize.import(__dirname + '/player'),
         PlayerAssignment: sequelize.import(__dirname + '/player_assignment'),
         Stake: sequelize.import(__dirname + '/stake'),
-        Sport: sequelize.import(__dirname + '/sport')
+        Sport: sequelize.import(__dirname + '/sport'),
+        Transaction: sequelize.import(__dirname + '/transaction'),
+        TransactionItem: sequelize.import(__dirname + '/transaction_item'),
+        TransactionApproval: sequelize.import(__dirname + '/transaction_approval')
+
     }
 
     /*
@@ -34,6 +38,7 @@ if (!global.hasOwnProperty('db')) {
      global.db.User.hasMany(global.db.SomethingElse)
      */
 
+    global.db.League.hasMany(global.db.Team);
     global.db.Team.belongsTo(global.db.League);
     global.db.Team.belongsTo(global.db.Sport);
 
@@ -44,6 +49,15 @@ if (!global.hasOwnProperty('db')) {
 
     global.db.User.hasMany(global.db.Team, {through: global.db.Stake});
     global.db.Team.hasMany(global.db.User, {through: global.db.Stake});
+
+    global.db.Transaction.belongsTo(global.db.League);
+    global.db.Transaction.hasMany(global.db.TransactionApproval);
+
+    global.db.TransactionItem.belongsTo(global.db.Transaction);
+    global.db.TransactionItem.belongsTo(global.db.Team, {as: 'source'});
+    global.db.TransactionItem.belongsTo(global.db.Team, {as: 'destination'});
+
+    global.db.TransactionApproval.belongsTo(global.db.Team);
 }
 
 module.exports = global.db

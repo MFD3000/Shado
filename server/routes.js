@@ -17,6 +17,7 @@ module.exports = function(app) {
   app.use('/api/sports', require('./api/sport'));
   app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));
+  app.use('/api/transactions', require('./api/transaction'));
 
   app.use('/auth', require('./auth'));
   
