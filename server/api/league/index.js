@@ -9,6 +9,7 @@ var router = express.Router();
 router.get('/', controller.index);
 router.get('/:id', controller.show);
 router.get('/:id/teams', auth.isAuthenticated(), controller.teams);
+router.get('/:id/rival_teams', auth.isAuthenticated(), controller.rival_teams);
 router.post('/', controller.create);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);

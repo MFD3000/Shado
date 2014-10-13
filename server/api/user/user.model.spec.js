@@ -1,15 +1,16 @@
 'use strict';
 
 var should = require('should');
-var app = require('../../app');
+var testUtil = require('../../components/test-util.js');
+
 var User = require('../models').User;
 
-var user = User.create({
+var userData = {
   provider: 'local',
   name: 'Fake User',
   email: 'test@test.com',
   password: 'password'
-});
+};
 
 describe('User Model', function() {
   before(function(done) {
@@ -26,43 +27,50 @@ describe('User Model', function() {
   });
 
   it('should begin with no users', function(done) {
-    User.find().then(function(users) {
+    User.findAll().then(function(users) {
       users.should.have.length(0);
       done();
     });
   });
 
   it('should fail when saving a duplicate user', function(done) {
-    user.save(function() {
-      var userDup = User.build(user);
-      userDup.save().then(function() {
-              // Fail if you reach this
-              should(false).ok
-          },function(err) {
-              should.exist(err);
-              done();
-          }
-      );
+    User.create(userData).then(function() {
+        User.build(userData).then(function (userDup) {
+            userDup.save().then(function () {
+                    // Fail if you reach this
+                    should(false).ok
+                }, function (err) {
+                    should.exist(err);
+                    done();
+                }
+            );
+        });
     });
   });
 
   it('should fail when saving without an email', function(done) {
-    user.email = '';
-    user.save().then(function() {
-            // Fail if you reach this
-            should(false).ok
-        },function(err) {
-            should.exist(err);
-            done();
-        }
-    );
+      User.create(userData).then(function(user) {
+          user.email = '';
+          user.save().then(function () {
+                  // Fail if you reach this
+                  should(false).ok
+              }, function (err) {
+                  should.exist(err);
+                  done();
+              }
+          );
+      });
   });
 
   it("should authenticate user if password is valid", function() {
-    user.authenticate('password').should.be.true;
+      User.create(userData).then(function(user) {
+          user.authenticate('password').should.be.true;
+      });
   });
 
   it("should not authenticate user if password is invalid", function() {
-    user.authenticate('blah').should.not.be.true;
+      User.create(userData).then(function(user) {
+          user.authenticate('blah').should.not.be.true;
+      });
   });
 });

@@ -13,6 +13,8 @@ if (!global.hasOwnProperty('db')) {
             host:     match[3],
             logging:  true //false
         })
+    } else if(process.env.NODE_ENV == 'test') {
+        sequelize =  new Sequelize('shadotest', 'shado', null, {dialect: 'postgres'});
     } else {
         sequelize =  new Sequelize('shado', 'shado', null, {dialect: 'postgres'});
     }
