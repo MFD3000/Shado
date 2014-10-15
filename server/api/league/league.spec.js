@@ -25,16 +25,25 @@ describe('GET /api/leagues', function() {
 
 
 describe('GET /api/leagues/:id/teams', function() {
-    var agent;
+    var loginToken;
+
+    before(function(done) {
+        // Clear users before testing
+        db.User.destroy({},{truncate: true}).then(function() {
+            done();
+        });
+    });
 
     before(function(done){
         db.sequelize.sync();
+
         var account = {
             email: 'test@test.com',
             password: 'test'
         };
+
         db.User.create(account).then(function(user1){
-            var pass = user1.getPassword(password);
+            var pass = user1.password;
             db.League.create({
                 name: 'League',
                 id: 1
@@ -45,20 +54,23 @@ describe('GET /api/leagues/:id/teams', function() {
                 }).then(function(team1){
                     team1.setLeague(league1);
                     team1.addUser(user1, {role: 'owner'});
+                    team1.save();
                 });
             });
         });
-        testUtil.loginUser(request(app),account,function(loginAgent){
-            agent = loginAgent;
+
+        testUtil.loginUser(request(app),account,function(token){
+            loginToken = token;
             done();
         });
     });
 
     it('should respond with JSON array', function(done) {
-        var req = request(app).get('/api/leagues/1/teams');
-        agent.attachCookies(req);
+        var req = request(app).get('/api/leagues/1/teams')
+            .set('Authorization',"Bearer " + loginToken);
+
         req.expect(200)
-            //     .expect('Content-Type', /json/)
+           .expect('Content-Type', /json/)
            .end(function(err, res) {
                if (err) return done(err);
                res.body.should.be.instanceof(Array);

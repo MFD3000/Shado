@@ -37,7 +37,7 @@ exports.index = function(req, res) {
 
 /**
  * Creates a new user
- */
+
 exports.create = function(req, res) {
     var newUser = User.build(req.body)
     newUser.save().success(function(user){
@@ -45,15 +45,16 @@ exports.create = function(req, res) {
     }).error(function(error) {
         return validationError(res, error);
     });
-};
+};*/
 exports.create = function (req, res, next) {
-  var newUser = new User(req.body);
+  var newUser = User.build(req.body);
   newUser.provider = 'local';
-  newUser.role = 'user';
-  newUser.save(function(err, user) {
-    if (err) return validationError(res, err);
+  newUser.role = 'manager';
+  newUser.save().then(function(user) {
     var token = jwt.sign({id: user.id }, config.secrets.session, { expiresInMinutes: 60*5 });
     res.json({ token: token });
+  },function(error){
+      return validationError(res, error);
   });
 };
 

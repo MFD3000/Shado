@@ -32,7 +32,6 @@ if (!global.hasOwnProperty('db')) {
         Transaction: sequelize.import(__dirname + '/transaction'),
         TransactionItem: sequelize.import(__dirname + '/transaction_item'),
         TransactionApproval: sequelize.import(__dirname + '/transaction_approval')
-
     }
 
     /*

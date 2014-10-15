@@ -12,21 +12,13 @@ module.exports = function(sequelize, DataTypes) {
         phone: DataTypes.STRING,
         email: {
             type: DataTypes.STRING,
+            unique: true,
             validate: {
                 notBlank: function(email){
                     if (authTypes.indexOf(this.provider) == -1) {
                         if (!validatePresenceOf(email)) {
                             throw new Error('Email cannot be blank')
                         }
-                    }
-                },
-                unique: function(email){
-                    if (authTypes.indexOf(this.provider) == -1) {
-                        User.find({where:{email: email}}).then(function(user){
-                            if(user) {
-                                throw new Error('The specified email address is already in use.')
-                            }
-                        });
                     }
                 }
             }
@@ -61,14 +53,18 @@ module.exports = function(sequelize, DataTypes) {
     },{
         getterMethods   : {
             password: function() { return this._password },
-            profile: function() { return {
-                'name': this.name,
-                'role': this.role
-            };},
-            token: function() { return {
-                'id': this.id,
-                'role': this.role
-            };}
+            profile: function() {
+                return {
+                    'name': this.name,
+                    'role': this.role
+                };
+            },
+            token: function() {
+                return {
+                    'id': this.id,
+                    'role': this.role
+                };
+            }
         },
         setterMethods   : {
             password: function(password) {

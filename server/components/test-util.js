@@ -4,15 +4,15 @@
 var superagent = require('superagent');
 var agent = superagent.agent();
 
+// Logs in as a user and returns their authorization token
 exports.loginUser = function(request, account, done){
     request
-        .post('/login')
+        .post('/auth/local')
         .send(account)
         .end(function (err, res) {
             if (err) {
                 throw err;
             }
-            agent.saveCookies(res);
-            done(agent);
+            done(res.body.token);
         });
 }

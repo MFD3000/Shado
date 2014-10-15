@@ -34,17 +34,16 @@ describe('User Model', function() {
   });
 
   it('should fail when saving a duplicate user', function(done) {
-    User.create(userData).then(function() {
-        User.build(userData).then(function (userDup) {
-            userDup.save().then(function () {
-                    // Fail if you reach this
-                    should(false).ok
-                }, function (err) {
-                    should.exist(err);
-                    done();
-                }
-            );
-        });
+    User.create(userData).then(function(user1) {
+        var userDup = User.build(userData);
+        userDup.save().then(function () {
+                // Fail if you reach this
+                should(false).ok
+            }, function (err) {
+                should.exist(err);
+                done();
+            }
+        );
     });
   });
 
